@@ -15,6 +15,21 @@ const LINKS = [
   { href: ROUTES.visit, id: "visit", label: "Visit" },
 ] as const;
 
+function HoldMark() {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      aria-hidden="true"
+      className="size-4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.4"
+    >
+      <path d="M4 2.5h8v11L8 10.5 4 13.5v-11z" />
+    </svg>
+  );
+}
+
 export function Shell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const screen = screenFromPathname(pathname);
@@ -53,9 +68,10 @@ export function Shell({ children }: { children: ReactNode }) {
           <Link
             href={ROUTES.visit}
             aria-label={`Shortlist, ${count} held`}
-            className="text-[12px] tracking-[0.14em] uppercase opacity-80"
+            className="inline-flex items-center gap-2 text-[12px] tracking-[0.14em] uppercase opacity-80"
           >
-            <span className="hidden sm:inline">Shortlist </span>
+            <HoldMark />
+            <span className="hidden sm:inline">Shortlist</span>
             <span key={count} className="count-pop text-clay">
               {count}
             </span>
